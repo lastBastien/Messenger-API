@@ -1,0 +1,49 @@
+openapi: 3.0.3
+info:
+  title: Instant Messenger API
+  version: 1.0.0
+  description: This is an API example for an Instant Messenger
+  contact:
+    email: jsburns@gmail.com
+    name: Sebastian_Burns
+  license:
+    name: Guild 
+paths:
+  /userMessages:
+    summary: message handling for a single user
+    get:
+      summary: retrieve last messages
+      description: retreives the most recent messages defined by number and date
+      operationId: getMessages
+      parameters:
+      - in: query
+        name: id
+        required: false
+        schema:
+          type: string
+        description: ID of message
+      - in: query
+        name: messageLimit
+        required: true
+        schema:
+          type: integer
+        description: The numbers of messages to retrieve
+        example: 100
+      - in: query
+        name: dateLimit
+        required: true
+        schema:
+          type: integer
+        description: The numbers of previous days from which to retrieve
+        example: 30
+      responses:
+        default:
+          description: Message retrieval error
+    post:
+      summary: Adds user sent messages to the set
+      description: When a user sends a message it will be added
+      operationId: addMessages
+      responses:
+        default:
+          description: Message save error
+  
